@@ -15,6 +15,7 @@ from app.routers import (
     sync_router
 )
 import logging
+from datetime import datetime
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -37,7 +38,11 @@ app = FastAPI(
     title=settings.APP_NAME,
     version=settings.API_VERSION,
     description="Personal Finance Aggregator - Plaid-style Mock Platform",
-    lifespan=lifespan
+    lifespan=lifespan,
+    redoc_url="/redoc",
+    docs_url="/docs",
+    # Fix ReDoc MIME type error by using stable CDN version
+    redoc_js_url="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js",
 )
 
 app.add_middleware(
