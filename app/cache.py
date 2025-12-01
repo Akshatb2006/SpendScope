@@ -34,7 +34,6 @@ class RedisCache:
             logger.error(f"Cache delete error: {e}")
     
     def invalidate_pattern(self, pattern: str):
-        """Invalidate all keys matching pattern"""
         try:
             for key in self.client.scan_iter(match=pattern):
                 self.client.delete(key)

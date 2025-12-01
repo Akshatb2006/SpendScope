@@ -11,17 +11,14 @@ def test_register_user():
         "password": "testpass123",
         "full_name": "Test User"
     })
-    assert response.status_code in [200, 400]  # 400 if already exists
+    assert response.status_code in [200, 400]  
 
 def test_login():
-    """Test user login"""
-    # Register first
     client.post("/auth/register", json={
         "email": "testuser@test.com",
         "password": "testpass123"
     })
     
-    # Login
     response = client.post("/auth/login", json={
         "email": "testuser@test.com",
         "password": "testpass123"

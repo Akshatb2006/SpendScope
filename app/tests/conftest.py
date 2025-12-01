@@ -10,7 +10,6 @@ from app.models.account import Account, AccountType
 from app.core.security import get_password_hash, create_access_token
 from datetime import datetime, timezone
 
-# Use in-memory SQLite database for tests
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 
 engine = create_engine(
@@ -22,7 +21,6 @@ TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin
 
 @pytest.fixture(scope="function")
 def db_session():
-    """Create a fresh database session for each test."""
     Base.metadata.create_all(bind=engine)
     session = TestingSessionLocal()
     try:
@@ -33,7 +31,6 @@ def db_session():
 
 @pytest.fixture(scope="function")
 def client(db_session):
-    """Create a test client with the database session override."""
     def override_get_db():
         try:
             yield db_session
@@ -47,7 +44,6 @@ def client(db_session):
 
 @pytest.fixture
 def test_user(db_session):
-    """Create a test user."""
     user = User(
         email="test@example.com",
         hashed_password=get_password_hash("testpassword"),
@@ -61,7 +57,6 @@ def test_user(db_session):
 
 @pytest.fixture
 def auth_headers(test_user):
-    """Return authentication headers for the test user."""
     access_token = create_access_token(data={"sub": str(test_user.id)})
     return {"Authorization": f"Bearer {access_token}"}
 
@@ -142,7 +137,6 @@ def setup_test_provider():
     mock_provider = MockProvider()
     mock_normalizer = MockNormalizer()
     
-    # Use patch.dict to safely patch the dictionary
     with patch.dict(provider_registry._providers, {"test_provider": mock_provider}):
         original_normalizers = SyncService.NORMALIZERS.copy()
         SyncService.NORMALIZERS["test_provider"] = mock_normalizer
@@ -151,7 +145,6 @@ def setup_test_provider():
 
 @pytest.fixture(scope="function")
 def client(db_session):
-    """Create a test client with the database session override."""
     def override_get_db():
         try:
             yield db_session
@@ -160,7 +153,6 @@ def client(db_session):
     
     app.dependency_overrides[get_db] = override_get_db
     
-    # Debug: Print routes
     print("\nDEBUG: Registered Routes:")
     for route in app.routes:
         print(f"  {route.path} [{route.methods}]")

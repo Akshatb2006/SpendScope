@@ -41,7 +41,6 @@ app = FastAPI(
     lifespan=lifespan,
     redoc_url="/redoc",
     docs_url="/docs",
-    # Fix ReDoc MIME type error by using stable CDN version
     redoc_js_url="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js",
 )
 
@@ -63,7 +62,6 @@ app.include_router(sync_router.router)
 
 @app.get("/")
 def root():
-    """Root endpoint"""
     return {
         "name": settings.APP_NAME,
         "version": settings.API_VERSION,
@@ -74,7 +72,6 @@ def root():
 
 @app.get("/health")
 def health_check():
-    """Health check endpoint"""
     return {
         "status": "healthy",
         "timestamp": datetime.utcnow().isoformat()

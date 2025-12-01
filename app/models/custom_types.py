@@ -2,9 +2,6 @@ from sqlalchemy import TypeDecorator, DateTime
 from datetime import datetime, timezone
 
 class TZDateTime(TypeDecorator):
-    """
-    A DateTime type that ensures values are timezone-aware (UTC).
-    """
     impl = DateTime
     cache_ok = True
 

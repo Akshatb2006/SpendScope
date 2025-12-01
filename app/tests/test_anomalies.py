@@ -10,7 +10,6 @@ class TestAnomalyDetection:
     def create_baseline_transactions(self, db_session, account_id, category, count=30):
         transactions = []
         for i in range(count):
-            # Add some variance to amounts to establish a realistic baseline
             variance = (i % 5) - 2  # -2, -1, 0, 1, 2
             amount = -50.00 + variance
             
@@ -36,7 +35,7 @@ class TestAnomalyDetection:
             account_id=test_account.id,
             provider_txn_id="ANOMALY_001",
             date=datetime.now(timezone.utc),
-            amount=-500.00,  # 10x normal
+            amount=-500.00,  
             description="Unusual large purchase",
             merchant="Unknown Store",
             category="groceries",
@@ -148,7 +147,6 @@ class TestAnomalyDetection:
 class TestAnomalyEndpoints:
     
     def test_detect_account_anomalies_endpoint(self, client, auth_headers, test_account, db_session):
-        # Create some transactions
         for i in range(15):
             txn = Transaction(
                 account_id=test_account.id,

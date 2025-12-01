@@ -11,7 +11,6 @@ logger = logging.getLogger(__name__)
 class AnomalyService:
     @staticmethod
     def detect_anomalies(db: Session, account_id: int, days_lookback: int = 90) -> List[Dict]:
-        """Detect transaction anomalies using heuristics"""
         anomalies = []
         
         try:

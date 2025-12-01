@@ -29,7 +29,6 @@ class TransactionGenerator:
         for day in range(days):
             txn_date = start_date + timedelta(days=day)
             
-            # Generate daily transactions
             for _ in range(random.randint(1, daily_count)):
                 category = random.choice(list(TransactionGenerator.CATEGORIES.keys()))
                 category_data = TransactionGenerator.CATEGORIES[category]

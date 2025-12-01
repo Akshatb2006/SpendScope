@@ -3,7 +3,6 @@ from datetime import datetime
 from app.normalization.banka_normalizer import BankANormalizer
 
 def test_banka_account_normalization():
-    """Test Bank A account normalization"""
     normalizer = BankANormalizer()
     raw_account = {
         "acct_id": "BA_001",
@@ -18,7 +17,6 @@ def test_banka_account_normalization():
     assert normalized.balance == 5000.0
 
 def test_banka_transaction_normalization():
-    """Test Bank A transaction normalization"""
     normalizer = BankANormalizer()
     raw_txn = {
         "txn_id": "BA_TXN_001",
