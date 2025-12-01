@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
 from app.database import Base
@@ -25,7 +25,7 @@ class Account(Base):
     last_synced = Column(TZDateTime)
     sync_cursor = Column(String)
     access_token_encrypted = Column(String)
-    is_active = Column(Integer, default=True)
+    is_active = Column(Boolean, default=True)
     created_at = Column(TZDateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(TZDateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
