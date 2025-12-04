@@ -446,7 +446,6 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 The API will be available at:
 - **API:** http://localhost:8000
 - **Swagger UI:** http://localhost:8000/docs
-- **ReDoc:** http://localhost:8000/redoc
 
 #### 9. Verify Installation
 
