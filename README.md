@@ -30,7 +30,6 @@ All banks are mock providers with synthetically generated transaction streams, m
 
 - **API:** https://spendscope-zp32.onrender.com
 - **Interactive Docs:** https://spendscope-zp32.onrender.com/docs
-- **ReDoc:** https://spendscope-zp32.onrender.com/redoc
 
 ---
 
